@@ -1,9 +1,9 @@
 <div class="container">
   <div class="header-container">
-    <app-button color= "white" text= "Activate ranger 1"></app-button>
-    <app-button color= "white" text= "Activate ranger 1"></app-button>
-    <app-button color= "#4CAF50" text= "Start fight"></app-button>
-    <app-button color= "#CA0B00" text= "Stop fight"></app-button>
+    <app-button color= "white" text= "Activate ranger 1" (btnClick)= "activateRanger()"></app-button>
+    <app-button color= "#4CAF50" text= "Start fight" (btnClick)= "handleFight()"></app-button>
+    <app-button color= "#CA0B00" text= "Stop fight" (btnClick)= "handleStop()"></app-button>
+    <app-button color= "white" text= "Activate ranger 2" (btnClick)= "activateRangerTwo()"></app-button>
   </div>
   <div class="img-container">
     <img class="ranger-one-image" src="../assets/orange-ninja1.png" alt="ninjaOrange">
