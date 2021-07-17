@@ -8,26 +8,36 @@ import { RangerOne, RangerTwo } from 'src/utils';
   styleUrls: ['./app.component.css']
 })
 
-// {name: string; health: number; print: () => void; fight: () => void; stop: (intervalId: number) => void}
 export class AppComponent {
   title: string = 'ranger-game';
   rangerOne: any;
   rangerTwo: any;
   intervalId: any = 0;
+  startGame: boolean = false;
+  isVisibleRangerOne = false;
+  isVisibleRangerTwo = false;
+  rangerOnePercentage: string = "";
+  rangerTwoPercentage: string = "";
 
-  activateRanger() {
-    this.rangerOne = new RangerOne('michael', 100);
+
+  activateRangerOne() {
+    this.rangerOne = new RangerOne('Michelangelo', 100);
+    this.isVisibleRangerOne = true;
     
   };
 
   activateRangerTwo() {
-    this.rangerTwo = new RangerTwo('raphael', 100);
+    this.rangerTwo = new RangerTwo('Leonardo', 100);
+    this.isVisibleRangerTwo = true;
   };
 
   handleFight() {
-    this.intervalId = setInterval(()=> {
-      this.rangerOne?.fight(40);
+      this.startGame = true;
+      this.intervalId = setInterval(()=> {
+      this.rangerOne?.fight(32);
       this.rangerTwo?.fight(30);
+      this.rangerOnePercentage = `${this.rangerOne.health}%`;
+      this.rangerTwoPercentage = `${this.rangerTwo.health}%`;
 
       if(!this.rangerOne.health) {
         clearInterval(this.intervalId);
@@ -44,7 +54,7 @@ export class AppComponent {
 
 
   handleStop() {
-      this.rangerOne.stop(this.intervalId)
-      this.rangerTwo.stop(this.intervalId)
+      this.rangerOne.stop(this.intervalId);
+      this.rangerTwo.stop(this.intervalId);
   }
 }

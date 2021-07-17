@@ -1,13 +1,38 @@
 <div class="container">
   <div class="header-container">
-    <app-button color= "white" text= "Activate ranger 1" (btnClick)= "activateRanger()"></app-button>
-    <app-button color= "#4CAF50" text= "Start fight" (btnClick)= "handleFight()"></app-button>
-    <app-button color= "#CA0B00" text= "Stop fight" (btnClick)= "handleStop()"></app-button>
-    <app-button color= "white" text= "Activate ranger 2" (btnClick)= "activateRangerTwo()"></app-button>
+    <app-button color="orange" text="Activate ranger 1" textColor="white" (btnClick)= "activateRangerOne()"></app-button>
+    <app-button color="#4CAF50" text="Start fight" (btnClick)= "handleFight()" [style.opacity]= "(isVisibleRangerOne && isVisibleRangerTwo)? 1 : 0"></app-button>
+    <app-button color="#CA0B00" text="Stop fight" (btnClick)= "handleStop()" [style.opacity]= "(isVisibleRangerOne && isVisibleRangerTwo)? 1 : 0"></app-button>
+    <app-button color="blue" text="Activate ranger 2" textColor="white" (btnClick)="activateRangerTwo()"></app-button>
   </div>
-  <div class="img-container">
-    <img class="ranger-one-image" src="../assets/orange-ninja1.png" alt="ninjaOrange">
-    <img class="ranger-two-image" src="../assets/blue-ninja1.png" alt="ninjaBlue">
-    
+  <div class= "ranger-info-container">
+      <div>
+        <p>{{ rangerOne?.name }}</p>
+        <p *ngIf="rangerOne?.health">{{ rangerOne?.health + "%" }}</p>
+        <div class= "health-bar-container" [ngClass]="{'health-visible' : isVisibleRangerOne}">
+          <div class="health-bar" [style.width]='rangerOnePercentage'>
+          </div>
+        </div>
+      </div>
+    <div>
+        <p>{{ rangerTwo?.name }}</p>
+        <p *ngIf="rangerTwo?.health">{{ rangerTwo?.health + "%" }}</p>
+        <div class= "health-bar-container" [ngClass]="{'health-visible' : isVisibleRangerTwo}">
+          <div class="health-bar" [style.width]='rangerTwoPercentage'>
+      
+          </div>
+        </div>
+    </div>
   </div>
+  <div class= "img-container">
+    <img class="ranger-one-image" [ngClass]="{'image-visible' : isVisibleRangerOne}" src="../assets/orange-ninja1.png" alt="ninjaOrange">
+    <img class="ranger-two-image" [ngClass]="{'image-visible' : isVisibleRangerTwo}"  src="../assets/blue-ninja1.png" alt="ninjaBlue">
+  </div>
+  <div *ngIf="(rangerOne?.health > rangerTwo?.health) && rangerTwo?.health === 0">
+    <p class="winner-text"> Michelangelo wins</p>
+  </div>
+  <div *ngIf="(rangerTwo?.health > rangerOne?.health )&& rangerOne?.health === 0">
+    <p class="winner-text"> Leonardo wins</p>
+  </div>
+
 </div>
