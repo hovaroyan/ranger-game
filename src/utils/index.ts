@@ -4,10 +4,10 @@ export interface IRanger {
 }
 
 abstract class Ranger implements IRanger {
-    name: string;
-    health: number;
+    name: string = "";
+    health: number = 0;
 
-    constructor(name: string, health: number) {
+    protected constructor(name: string, health: number) {
         this.name = name;
         this.health = health;
     }
@@ -22,28 +22,39 @@ abstract class Ranger implements IRanger {
         
     }
 
-    stop(intervalId: number, callback: () => void): void {
-        setTimeout(()=>{
-            callback();
-            clearInterval(intervalId);
-        }, 3000)    
-    } 
+    protected stop(intervalId: number,  callback: () => void): void {
+
+    }
+    
 }
 
 export class RangerOne extends Ranger {
     constructor(name: string, health: number) {
         super(name, health);
+        this.name = name;
+        this.health = health;
     }
-    stop(intervalId: number,  callback: () => void) {
-        super.stop(intervalId,  callback);
-    }
+
+    stop(intervalId: number,  callback: () => void): void {
+        setTimeout(()=>{
+            callback();
+            clearInterval(intervalId);
+        }, 3000);    
+    } 
+    
 }
 
 export class RangerTwo extends Ranger {
     constructor(name: string, health: number) {
         super(name, health);
+        this.name = name;
+        this.health = health;
     }
-    stop(intervalId: number, callback: () => void) {
-        super.stop(intervalId, callback);
-    }
+
+    stop(intervalId: number,  callback: () => void): void {
+        setTimeout(()=>{
+            callback();
+            clearInterval(intervalId);
+        }, 3000);    
+    } 
 }
