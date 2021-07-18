@@ -51,5 +51,7 @@
   <div *ngIf="(rangerTwo && rangerOne && rangerTwo.health > rangerOne.health )&& rangerOne?.health === 0">
     <p class="winner-text"> Leonardo wins</p>
   </div>
-
+  <div *ngIf="( rangerOne?.health == rangerTwo?.health && rangerOne?.health === 0 && rangerTwo?.health === 0 )">
+    <p class="winner-text"> Draw </p>
+  </div>
 </div>
