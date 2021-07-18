@@ -1,8 +1,8 @@
 <div class="container">
   <div class="header-container">
     <app-button color="orange" text="Activate ranger 1" textColor="white" (btnClick)= "activateRangerOne()"></app-button>
-    <app-button color="#4CAF50" text="Start fight" (btnClick)= "handleFight()" [style.opacity]= "(isVisibleRangerOne && isVisibleRangerTwo)? 1 : 0"></app-button>
-    <app-button color="#CA0B00" text="Stop fight" (btnClick)= "handleStop()" [style.opacity]= "(isVisibleRangerOne && isVisibleRangerTwo)? 1 : 0"></app-button>
+    <app-button [disabled]= "startGame" color="#4CAF50" text="Start fight" (btnClick)= "handleFight()" [style.opacity]="(isVisibleRangerOne && isVisibleRangerTwo)? 1 : 0"></app-button>
+    <app-button [disabled]="!startGame" color="#CA0B00" text="Stop fight" (btnClick)= "handleStop()" [style.opacity]= "(isVisibleRangerOne && isVisibleRangerTwo)? 1 : 0"></app-button>
     <app-button color="blue" text="Activate ranger 2" textColor="white" (btnClick)="activateRangerTwo()"></app-button>
   </div>
   <div class= "ranger-info-container">

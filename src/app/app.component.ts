@@ -13,22 +13,24 @@ export class AppComponent {
   rangerOne: any;
   rangerTwo: any;
   intervalId: any = 0;
-  startGame: boolean = false;
-  isVisibleRangerOne = false;
-  isVisibleRangerTwo = false;
+  isVisibleRangerOne: boolean = false;
+  isVisibleRangerTwo: boolean = false;
   rangerOnePercentage: string = "";
   rangerTwoPercentage: string = "";
+  startGame: boolean = false;
 
 
   activateRangerOne() {
     this.rangerOne = new RangerOne('Michelangelo', 100);
     this.isVisibleRangerOne = true;
+
     
   };
 
   activateRangerTwo() {
     this.rangerTwo = new RangerTwo('Leonardo', 100);
     this.isVisibleRangerTwo = true;
+
   };
 
   handleFight() {
@@ -54,7 +56,11 @@ export class AppComponent {
 
 
   handleStop() {
-      this.rangerOne.stop(this.intervalId);
-      this.rangerTwo.stop(this.intervalId);
+      this.rangerOne.stop(this.intervalId, () => {
+        this.startGame = false;
+      });
+      this.rangerTwo.stop(this.intervalId, () => {
+        this.startGame = false;
+      });
   }
 }

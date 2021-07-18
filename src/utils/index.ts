@@ -22,8 +22,9 @@ abstract class Ranger implements IRanger {
         
     }
 
-    stop(intervalId: number): void {
+    stop(intervalId: number, callback: () => void): void {
         setTimeout(()=>{
+            callback();
             clearInterval(intervalId);
         }, 3000)    
     } 
@@ -33,8 +34,8 @@ export class RangerOne extends Ranger {
     constructor(name: string, health: number) {
         super(name, health);
     }
-    stop(intervalId: number) {
-        super.stop(intervalId);
+    stop(intervalId: number,  callback: () => void) {
+        super.stop(intervalId,  callback);
     }
 }
 
@@ -42,7 +43,7 @@ export class RangerTwo extends Ranger {
     constructor(name: string, health: number) {
         super(name, health);
     }
-    stop(intervalId: number) {
-        super.stop(intervalId);
+    stop(intervalId: number, callback: () => void) {
+        super.stop(intervalId, callback);
     }
 }
