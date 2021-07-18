@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ISubRanger, RangerOne, RangerTwo } from 'src/utils';
+import { IRanger, Ranger } from 'src/utils';
 
 @Component({
   selector: 'app-root',
@@ -9,8 +9,8 @@ import { ISubRanger, RangerOne, RangerTwo } from 'src/utils';
 
 export class AppComponent {
   title: string = 'ranger-game';
-  rangerOne: ISubRanger | undefined = undefined;
-  rangerTwo: ISubRanger | undefined = undefined;
+  rangerOne: IRanger | undefined = undefined;
+  rangerTwo: IRanger | undefined = undefined;
   intervalId: any;
   isVisibleRangerOne: boolean = false;
   isVisibleRangerTwo: boolean = false;
@@ -22,14 +22,14 @@ export class AppComponent {
 
 
   activateRangerOne() {
-    this.rangerOne = new RangerOne('Michelangelo', 100);
+    this.rangerOne = new Ranger('Michelangelo', 100);
     this.isVisibleRangerOne = true;
 
     
   };
 
   activateRangerTwo() {
-    this.rangerTwo = new RangerTwo('Leonardo', 100);
+    this.rangerTwo = new Ranger('Leonardo', 100);
     this.isVisibleRangerTwo = true;
 
   };

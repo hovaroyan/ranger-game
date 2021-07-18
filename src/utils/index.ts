@@ -1,14 +1,14 @@
-export interface IRanger {
+export interface IPlayer {
     name: string;
     health: number;
     fight: (range: number) => void;
 }
 
-export interface ISubRanger extends IRanger {
+export interface IRanger extends IPlayer {
     stop: (intervalId: number, callback: () => void) => void;
 }
 
-abstract class Ranger implements IRanger {
+abstract class Player implements IPlayer {
     name: string = "";
     health: number = 0;
 
@@ -33,7 +33,7 @@ abstract class Ranger implements IRanger {
     
 }
 
-export class RangerOne extends Ranger implements ISubRanger {
+export class Ranger extends Player implements IRanger {
     constructor(name: string, health: number) {
         super(name, health);
         this.name = name;
@@ -47,19 +47,4 @@ export class RangerOne extends Ranger implements ISubRanger {
         }, 3000);    
     } 
     
-}
-
-export class RangerTwo extends Ranger implements ISubRanger  {
-    constructor(name: string, health: number) {
-        super(name, health);
-        this.name = name;
-        this.health = health;
-    }
-
-    stop(intervalId: number,  callback: () => void): void {
-        setTimeout(()=>{
-            callback();
-            clearInterval(intervalId);
-        }, 3000);    
-    } 
 }
