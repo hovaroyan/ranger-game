@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RangerOne, RangerTwo } from 'src/utils';
+import { ISubRanger, RangerOne, RangerTwo } from 'src/utils';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +9,9 @@ import { RangerOne, RangerTwo } from 'src/utils';
 
 export class AppComponent {
   title: string = 'ranger-game';
-  rangerOne: any;
-  rangerTwo: any;
-  intervalId: any = 0;
+  rangerOne: ISubRanger | undefined = undefined;
+  rangerTwo: ISubRanger | undefined = undefined;
+  intervalId: any;
   isVisibleRangerOne: boolean = false;
   isVisibleRangerTwo: boolean = false;
   rangerOnePercentage: string = "";
@@ -41,17 +41,17 @@ export class AppComponent {
       this.intervalId = setInterval(()=> {
       this.rangerOne?.fight(32);
       this.rangerTwo?.fight(30);
-      this.rangerOnePercentage = `${this.rangerOne.health}%`;
-      this.rangerTwoPercentage = `${this.rangerTwo.health}%`;
+      this.rangerOnePercentage = `${this.rangerOne?.health}%`;
+      this.rangerTwoPercentage = `${this.rangerTwo?.health}%`;
 
-      if(!this.rangerOne.health) {
+      if(!this?.rangerOne?.health) {
         clearInterval(this.intervalId);
         this.startGame = true;
         this.stopGame = false;
         this.resetGame = false;
       };
 
-      if(!this.rangerTwo.health) {
+      if(!this?.rangerTwo?.health) {
         clearInterval(this.intervalId);
         this.startGame = true;
         this.stopGame = false;
@@ -59,25 +59,25 @@ export class AppComponent {
       }
     },1000);
 
-    console.log(this.rangerOne.health);
-    console.log(this.rangerTwo.health);
+    console.log(this.rangerOne?.health);
+    console.log(this.rangerTwo?.health);
   }
 
 
   handleStop() {
-      this.rangerOne.stop(this.intervalId, () => {
+      this.rangerOne?.stop(this.intervalId, () => {
         this.startGame = false;
         this.stopGame = false;
       });
-      this.rangerTwo.stop(this.intervalId, () => {
+      this.rangerTwo?.stop(this.intervalId, () => {
         this.startGame = false;
         this.stopGame = false;
       });
   }
 
   handleReset() {
-    this.rangerOne = {};
-    this.rangerTwo = {};
+    this.rangerOne = undefined;
+    this.rangerTwo = undefined;
     this.startGame = false;
     this.stopGame = false;
     this.resetGame = true;

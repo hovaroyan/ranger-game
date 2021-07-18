@@ -1,6 +1,11 @@
 export interface IRanger {
     name: string;
     health: number;
+    fight: (range: number) => void;
+}
+
+export interface ISubRanger extends IRanger {
+    stop: (intervalId: number, callback: () => void) => void;
 }
 
 abstract class Ranger implements IRanger {
@@ -28,7 +33,7 @@ abstract class Ranger implements IRanger {
     
 }
 
-export class RangerOne extends Ranger {
+export class RangerOne extends Ranger implements ISubRanger {
     constructor(name: string, health: number) {
         super(name, health);
         this.name = name;
@@ -44,7 +49,7 @@ export class RangerOne extends Ranger {
     
 }
 
-export class RangerTwo extends Ranger {
+export class RangerTwo extends Ranger implements ISubRanger  {
     constructor(name: string, health: number) {
         super(name, health);
         this.name = name;
