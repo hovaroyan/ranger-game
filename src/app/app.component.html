@@ -42,8 +42,8 @@
     </div>
   </div>
   <div class= "img-container">
-    <img class="ranger-one-image" [ngClass]="{'image-visible' : isVisibleRangerOne}" src="../assets/orange-ninja1.png" alt="ninjaOrange">
-    <img class="ranger-two-image" [ngClass]="{'image-visible' : isVisibleRangerTwo}"  src="../assets/blue-ninja1.png" alt="ninjaBlue">
+    <img class="ranger-one-image" [ngClass]="{'image-visible' : isVisibleRangerOne , 'rotate' :startGame&&rangerOne?.health&&rangerTwo?.health}" src="../assets/orange-ninja1.png" alt="ninjaOrange">
+    <img class="ranger-two-image" [ngClass]="{'image-visible' : isVisibleRangerTwo , 'rotate' :startGame&&rangerOne?.health&&rangerTwo?.health}"  src="../assets/blue-ninja1.png" alt="ninjaBlue">
   </div>
   <div *ngIf="(rangerOne && rangerTwo && rangerOne.health > rangerTwo.health) && rangerTwo?.health === 0">
     <p class="winner-text"> Michelangelo wins</p>
