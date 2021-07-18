@@ -58,9 +58,6 @@ export class AppComponent {
         this.resetGame = false;
       }
     },1000);
-
-    console.log(this.rangerOne?.health);
-    console.log(this.rangerTwo?.health);
   }
 
 
