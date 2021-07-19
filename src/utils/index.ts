@@ -23,8 +23,6 @@ abstract class Player implements IPlayer {
         if(Math.sign(this.health) === -1) {
             this.health = 0;
         }
-        console.log(this.health);
-        
     }
 
     protected stop(intervalId: number,  callback: () => void): void {
