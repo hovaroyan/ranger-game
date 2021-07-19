@@ -19,8 +19,8 @@ export class AppComponent {
   startGame: boolean = false;
   stopGame: boolean = false;
   resetGame: boolean = true;
-  rangerOneImg: string = "../assets/orange-ninja1.png";
-  rangerTwoImg: string = "../assets/blue-ninja1.png";
+  rangerOneImg: string = "./assets/orange-ninja1.png";
+  rangerTwoImg: string = "./assets/blue-ninja1.png";
 
 
   activateRangerOne() {
